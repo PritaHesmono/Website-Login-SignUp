@@ -5,6 +5,13 @@ import{getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/10.11
 const firebaseConfig = {
     //YOUR COPIED FIREBASE PART SHOULD BE HERE
  //WATCH THIS VIDEO TO LEARN WHAT TO PUT HERE   https://youtu.be/_Xczf06n6x0
+ apiKey: "AIzaSyB6c0FpgDGGSjLqJWQQgk7NMJdcrJXPy_8",
+ authDomain: "login-register-d71d9.firebaseapp.com",
+ projectId: "login-register-d71d9",
+ storageBucket: "login-register-d71d9.appspot.com",
+ messagingSenderId: "520309435822",
+ appId: "1:520309435822:web:fbdfc23756822a31e9ec3f",
+ measurementId: "G-Z3H8RF1QHK"
   };
  
   // Initialize Firebase
@@ -42,13 +49,20 @@ const firebaseConfig = {
 
   const logoutButton=document.getElementById('logout');
 
-  logoutButton.addEventListener('click',()=>{
-    localStorage.removeItem('loggedInUserId');
-    signOut(auth)
-    .then(()=>{
-        window.location.href='index.html';
-    })
-    .catch((error)=>{
-        console.error('Error Signing out:', error);
-    })
-  })
+  document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.getElementById('logout');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('loggedInUserId');
+            signOut(auth)
+            .then(() => {
+                window.location.href = 'index.html';
+            })
+            .catch((error) => {
+                console.error('Error Signing out:', error);
+            });
+        });
+    } else {
+        console.error("Logout button not found");
+    }
+});
